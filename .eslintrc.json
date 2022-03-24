@@ -18,7 +18,7 @@
 		}],
 		"space-in-parens": ["error", "never"],
 		"object-curly-spacing": ["error", "always"],
-		"func-style": ["error", "expression", {
+		"func-style": ["error", "declaration", {
 			"allowArrowFunctions": true
 		}],
 		"indent": ["error", "tab", { "ignoredNodes": ["TemplateLiteral > *"] }],
