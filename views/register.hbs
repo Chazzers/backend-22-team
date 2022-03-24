@@ -1,0 +1,29 @@
+    <head>
+        <script src="js/checkfilled.js" defer></script>
+        <script src="js/validatepw.js" defer></script>
+    </head>
+    <h1>Register</h1>
+    <form action="/register" method="POST" id="form">
+        <input type="text" name="name" id="name" placeholder="name" class="register-input">
+        <input type="email" name="email" id="email" placeholder="Email" class="register-input">
+        <input type="date" name="date" id="date" max="2002-01-01" placeholder="dd-mm-jjjj" class="register-input">
+        <input type="password" name="password" id="password" placeholder="password" class="register-input password">
+        <input type="password" name="password2" id="password2" placeholder="password" class="register-input password" onblur="validate()">
+        <section class="select">
+            <h2>Select a pokemon</h2>
+            <input type="radio" name="pokemon" value="Bulbasaur" id="bulbasaur">
+            <label for="bulbasaur">
+                <img src="images/bulbasaur.png" alt="bulbasaur">
+            </label>
+            <input type="radio" name="pokemon" value="Charmander" id="charmander">
+            <label for="charmander">
+                <img src="images/Charmander.png" alt="charmander">
+            </label>
+            <input type="radio" name="pokemon" value="Squirtle" id="squirtle">
+            <label for="squirtle">
+                <img src="images/squirtle.png" alt="squirtle">
+            </label>     
+        </section>
+        <button type="submit" class="submit" id="submit">Register</button>
+    </form>
+    <a href="/login">Login</a>

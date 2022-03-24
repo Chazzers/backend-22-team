@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+	color: white;
+	font-family: "Lucida Console", "Courier New", monospace;
+}
+
+body {
+    background: url(../images/bg.jpg) no-repeat center center fixed; 
+}
+
+h1 {
+    color: white;
+    padding: 1em 0em 0em 0em;
+	font-size-adjust: 1;
+	text-align: center;
+}
+
+/* login */
+.login {
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 45%;
+    margin: auto;
+}
+
+input {
+    border: none;
+    border-bottom: solid red;
+    border-bottom-width: 0.2em;
+    width: 16em;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    display: block;
+    margin: 1em auto;
+}
+
+.info {
+	text-align: center;
+	margin: 5em 0em 3em 0em;
+	background-color: rgba(255,255,255,0.25);
+	padding: 1em;
+}
+
+.info p{
+	margin: 1em;
+	font-size-adjust: 1;
+}
+
+h2 {
+	margin-bottom: 2em;
+	font-size-adjust: 1;
+	text-align: center;
+}
+
+main form:nth-child(4) {
+    padding-bottom: 1em;
+}
+
+label img {
+    max-height: 10em;
+}
+
+.matches {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	background-color: rgba(255,255,255,0.25);
+}
+
+.match {
+	font-size: 30px;
+	text-align: center;
+	margin-bottom: 2em;
+	margin-top: 2em;
+}
+
+.match img {
+	max-height: 8em;
+}
+
+/*Header*/
+header ul li img {
+    width: 7em;
+    margin: 0em 0em 0em 2em;
+}
+
+header ul {
+    width: 100%;
+	display: table
+}
+
+header ul li {
+    font-weight: bold;
+	font-size-adjust: 0.7;
+	vertical-align: middle;
+	display: table-cell;
+}
+
+header {
+	/* position: sticky; */
+	top: 0;
+	background-color: rgba(255,255,255,0.2);
+}
+
+a {
+	text-decoration: none;
+}
+
+.login {
+	padding-bottom: 3em;
+	margin-bottom: 11em;
+}
+
+.login p {
+	margin-top: 2em;
+}
+
+.select {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	margin-top: 4em;
+}
+
+input[type="radio"] {
+	visibility: hidden;
+	display: none;
+	position: relative;
+}
+
+.submit {
+	width: 10em;
+	margin: auto;
+	display: block;
+	background-color: #545454;
+	border: #545454;
+}
+
+input:checked + label{
+	border: 0.5em solid gold;
+	margin-bottom: 1em;
+	transform: translateY(-2em);
+}
+
+label{
+	margin: 0em 2em 0em 0em;
+}
+
+input:checked + label img {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
+
+/*footer*/
+.container {
+	max-width: 1170px;
+	margin:auto;
+}
+.row{
+	display: flex;
+	flex-wrap: wrap;
+}
+ul{
+	list-style: none;
+}
+footer{
+	background-color: #24262b;
+    padding: 2em;
+	margin-top: 2em;
+	display: flex;
+	/* position: sticky; */
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.item {
+	margin-right: 2em;
+}

@@ -1,0 +1,37 @@
+{
+  "name": "back-end-tech-21-22",
+  "version": "1.0.0",
+  "description": "Back end repo for block tech 2021-2022",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "comments": "app.js is hoe je het bestand moet openen, dev is voor development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markschuttehva/back-end-tech-21-22.git"
+  },
+  "author": "Mark",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/markschuttehva/back-end-tech-21-22/issues"
+  },
+  "homepage": "https://github.com/markschuttehva/back-end-tech-21-22#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "chalk": "^5.0.0",
+    "express": "^4.17.2",
+    "express-handlebars": "^6.0.2",
+    "express-session": "^1.17.2",
+    "handlebars": "^4.7.7",
+    "heroku": "^7.33.3",
+    "mongodb": "^4.4.0",
+    "mongoose": "^6.2.5",
+    "nodemon": "^2.0.15"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.0"
+  }
+}
