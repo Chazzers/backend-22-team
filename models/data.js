@@ -1,5 +1,0 @@
-/* Databse voor de users 
-Username
-Email
-Password
-*/
