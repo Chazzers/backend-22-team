@@ -48,5 +48,6 @@ Distributed under the [Mit](/LICENSE). See LICENSE.txt for more information.
 - Check to see if someone is the right age (18+).
 
 ### Back-end
-- Register
-- Login
+- Register.
+- Login.
+- Sending email to user when registered.
