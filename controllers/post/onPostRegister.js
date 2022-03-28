@@ -1,7 +1,10 @@
+
+//variabels voor nodemailer
 const bcrypt = require('bcrypt')
 const User = require('../../models/User.js')
 const nodemailer = require('nodemailer')
 
+//async functie voor het hashen van het wachtwoord en het creeren van een user
 async function onPostRegister(req, res) {
 	//res.render('register');
 	try {
@@ -22,21 +25,23 @@ async function onPostRegister(req, res) {
 			pokemon: req.body.pokemon
 		})
 
+		//Gegevens van de server die verstuurd gaat worden
 		let transporter = nodemailer.createTransport({
-			host: 'smtp.ethereal.email',
+			service: 'hotmail',
+			host: '',
 			port: 587,
 			secure: false, // true for 465, false for other ports
 			auth: {
-				user: req.body.name, // generated ethereal user
-				pass: req.body.password, // generated ethereal password
+				user: process.env.MAIL, // generated ethereal user, email waarvan het verstuurd wordt
+				pass: process.env.NODEPASS // generated ethereal password, wachtwoord van het bovenstaande emailadres
 			},
 		})
 		let url = 'http://localhost:1337/login'
 		if(process.env.PRODUCTION) {
 			url = ''//heroku url
 		}
-		let info = await transporter.sendMail({
-			from: '"Pokemon Match 🔥" <register@pokemonmatch.com>', // sender address
+		await transporter.sendMail({
+			from: `"Pokemon Match 🔥" <${process.env.MAIL}>`, // sender address
 			to: req.body.email, // list of receivers
 			subject: 'Welcome to Pokemon Match!', // Subject line
 			//text: 'Hello world?', // plain text body
@@ -51,10 +56,6 @@ async function onPostRegister(req, res) {
 			 <p> Enjoy your time and have fun! </p>
 			` // html body
 		})
-
-		
-
-
 		res.redirect('/login')
        
 	} catch(err) {
@@ -64,3 +65,7 @@ async function onPostRegister(req, res) {
 }
 
 module.exports = onPostRegister
+
+
+//bronnen
+//https://www.youtube.com/watch?v=CrdMFZIYoEY&ab_channel=RandomCoder
