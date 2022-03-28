@@ -1,11 +1,12 @@
 /* routes*/
 const express = require('express')
 const app = express()
-/* bcrypt voor het versleutelen van wachtwoorden
-https://www.youtube.com/watch?v=hh45sR9WNH8&ab_channel=ChristianHur
-https://github.com/ChristianHur/152-150-Web-Programming-2/tree/master/unit6
-*/
-const exphbs = require('express-handlebars').engine 
+
+const exphbs = require('express-handlebars').engine
+/* inloggen */
+const session = require('express-session')
+const path = require('path')
+const helmet = require('helmet')
 
 require('dotenv').config()
 
@@ -22,11 +23,9 @@ const onAbout = require('./controllers/render/onAbout.js')
 const onRegister = require('./controllers/render/onRegister.js')
 const onNotFound = require('./controllers/render/onNotFound.js')
 
-
 // controller post functions
 const onPostLogin = require('./controllers/post/onPostLogin.js')
 const onPostRegister = require('./controllers/post/onPostRegister.js')
-
 
 connectDb(process.env.DATABASE_URI)
 
@@ -37,19 +36,6 @@ app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded({
 	extended: false 
 }))
-
-/* mongoose en mongodb voor een database connectie */
-if (process.env.NODE_ENV !== 'production') {
-	require('dotenv').config()  
-}
-
-// const db = mongoose.connection;
-// db.on('error', error => console.error(error));
-// db.once('open', () => console.log('connected to mongoose'));
-
-/* inloggen */
-const session = require('express-session')
-const path = require('path')
 
 app.use(session({
 	secret: process.env.SECRET,
@@ -77,6 +63,9 @@ app.use((req, res, next) => {
 		next()
 	}
 })
+app.use(helmet.contentSecurityPolicy())
+app.use(helmet.referrerPolicy())
+
 
 /* handlebars settings */
 app.set('view engine', 'hbs')
@@ -95,8 +84,6 @@ app.get('*', onNotFound)
 
 app.post('/register', onPostRegister)
 app.post('/login', onPostLogin)
-
-/* async wordt gebruikt omdat het een await bevat hierdoor kan het verder met de code*/ 
 
 app.listen(PORT, () => {
 	console.log(`server running on port: http://localhost:${PORT}`)

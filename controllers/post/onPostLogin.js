@@ -1,3 +1,7 @@
+/* bcrypt voor het versleutelen van wachtwoorden
+https://www.youtube.com/watch?v=hh45sR9WNH8&ab_channel=ChristianHur
+https://github.com/ChristianHur/152-150-Web-Programming-2/tree/master/unit6
+*/
 const bcrypt = require('bcrypt')
 const User = require('../../models/User.js')
 
