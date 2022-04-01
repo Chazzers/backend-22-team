@@ -1,0 +1,74 @@
+/*Header*/
+header ul li img {
+    width: 7em;
+    margin: 0em 0em 0em 2em;
+}
+
+header ul {
+    width: 100%;
+	display: table
+}
+
+header ul li {
+    font-weight: bold;
+	font-size-adjust: 0.7;
+	vertical-align: middle;
+	display: table-cell;
+}
+
+header {
+	/* position: sticky; */
+	top: 0;
+	background-color: rgba(255,255,255,0.2);
+}
+
+a {
+	text-decoration: none;
+}
+
+.login {
+	padding-bottom: 3em;
+	margin-bottom: 11em;
+}
+
+.login p {
+	margin-top: 2em;
+}
+
+.select {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	margin-top: 4em;
+}
+
+input[type="radio"] {
+	visibility: hidden;
+	display: none;
+	position: relative;
+}
+
+.submit {
+	width: 10em;
+	margin: auto;
+	display: block;
+	background-color: #545454;
+	border: #545454;
+}
+
+input:checked + label{
+	border: 0.5em solid gold;
+	margin-bottom: 1em;
+	transform: translateY(-2em);
+}
+
+label{
+	margin: 0em 2em 0em 0em;
+}
+
+input:checked + label img {
+	height: 100%;
+	width: 100%;
+	object-fit: contain;
+}
+

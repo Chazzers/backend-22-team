@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+	color: white;
+	font-family: "Lucida Console", "Courier New", monospace;
+}
+
+body {
+    background: url(../images/bg.jpg) no-repeat center center fixed; 
+}
+
+h1 {
+    color: white;
+    padding: 1em 0em 0em 0em;
+	font-size-adjust: 1;
+	text-align: center;
+}
