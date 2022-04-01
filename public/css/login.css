@@ -1,0 +1,61 @@
+/* login */
+.login {
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    width: 45%;
+    margin: auto;
+}
+
+input {
+    border: none;
+    border-bottom: solid red;
+    border-bottom-width: 0.2em;
+    width: 16em;
+    background-color: rgba(0, 0, 0, 0);
+    color: white;
+    display: block;
+    margin: 1em auto;
+}
+
+.info {
+	text-align: center;
+	margin: 5em 0em 3em 0em;
+	background-color: rgba(255,255,255,0.25);
+	padding: 1em;
+}
+
+.info p{
+	margin: 1em;
+	font-size-adjust: 1;
+}
+
+h2 {
+	margin-bottom: 2em;
+	font-size-adjust: 1;
+	text-align: center;
+}
+
+main form:nth-child(4) {
+    padding-bottom: 1em;
+}
+
+label img {
+    max-height: 10em;
+}
+
+.matches {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	background-color: rgba(255,255,255,0.25);
+}
+
+.match {
+	font-size: 30px;
+	text-align: center;
+	margin-bottom: 2em;
+	margin-top: 2em;
+}
+
+.match img {
+	max-height: 8em;
+}

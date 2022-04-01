@@ -1,15 +1,35 @@
 /* routes*/
 const express = require('express')
 const app = express()
-const bcrypt = require('bcrypt')
-/* bcrypt voor het versleutelen van wachtwoorden
-https://www.youtube.com/watch?v=hh45sR9WNH8&ab_channel=ChristianHur
-https://github.com/ChristianHur/152-150-Web-Programming-2/tree/master/unit6
-*/
-const exphbs = require('express-handlebars').engine 
+
+const exphbs = require('express-handlebars').engine
+/* inloggen */
+const session = require('express-session')
+const path = require('path')
+const helmet = require('helmet')
+
+require('dotenv').config()
 
 /* Port leet \,,/ (^.^) \,,/ */
 const PORT = process.env.PORT || 1337
+
+// controller database functions
+const connectDb = require('./controllers/database/connectDb.js')
+
+// controller render functions
+const onHome = require('./controllers/render/onHome.js')
+const onLogin = require('./controllers/render/onLogin.js')
+const onAbout = require('./controllers/render/onAbout.js')
+const onRegister = require('./controllers/render/onRegister.js')
+const onNotFound = require('./controllers/render/onNotFound.js')
+const onMatch = require('./controllers/render/onMatch.js')
+
+// controller post functions
+const onPostLogin = require('./controllers/post/onPostLogin.js')
+const onPostRegister = require('./controllers/post/onPostRegister.js')
+const onPostLike = require('./controllers/post/onPostLike.js')
+
+connectDb(process.env.DATABASE_URI)
 
 /* voor de statische bestanden zoals css en afbeeldingen */
 app.use(express.static(__dirname + '/public'))
@@ -18,32 +38,6 @@ app.use(express.static(__dirname + '/public'))
 app.use(express.urlencoded({
 	extended: false 
 }))
-
-/* mongoose en mongodb voor een database connectie */
-if (process.env.NODE_ENV !== 'production') {
-	require('dotenv').config()  
-}
- 
-const mongoose = require('mongoose')
-mongoose.connect(process.env.DATABASE_URL)
-// const db = mongoose.connection;
-// db.on('error', error => console.error(error));
-// db.once('open', () => console.log('connected to mongoose'));
-
-/* datamodel */
-const Schema = mongoose.Schema
-const userSchema = new Schema({
-	name: String,
-	email: String,
-	date: Date,
-	password: String,
-	pokemon: String
-})
-const User = mongoose.model('User',userSchema)
-
-/* inloggen */
-const session = require('express-session')
-const path = require('path')
 
 app.use(session({
 	secret: process.env.SECRET,
@@ -70,8 +64,10 @@ app.use((req, res, next) => {
 	} else {
 		next()
 	}
-
 })
+app.use(helmet.contentSecurityPolicy())
+app.use(helmet.referrerPolicy())
+
 
 /* handlebars settings */
 app.set('view engine', 'hbs')
@@ -86,83 +82,17 @@ app.get('/', onHome)
 app.get('/about', onAbout)
 app.get('/register', onRegister)
 app.get('/login', onLogin)
-app.get('*', notFound)
+app.get('/match', onMatch)
+app.get('*', onNotFound)
 
 app.post('/register', onPostRegister)
 app.post('/login', onPostLogin)
+app.post('/like-user', onPostLike)
 
-async function onPostLogin(req, res) {
-	/*ingevoerde velden (client) */    
-	const email = req.body.email
-	console.log(email)
-	const password = req.body.password
-	console.log(password)
-	const currentUser = await User.findOne({
-		email: email 
-	})
-	console.log(currentUser)
-	//terug hasehen van bycript wachtwoord in database
-	bcrypt.compare(password, currentUser.password, (err, result) =>{
-		if(result === true) {
-			console.log('succes')
-			req.session.user = currentUser
-			res.redirect('/')
-		} else {
-			res.redirect('/login')
-		}
-	}) 
-}
+app.listen(PORT, () => {
+	console.log(`server running on port: http://localhost:${PORT}`)
+}) 
 
-function onHome(req, res) {
-	res.render('main', {
-		name: req.session.user.name,
-		pokemon: req.session.user.pokemon 
-	})
-}
-
-function onLogin(req, res) {
-	res.render('login')
-}
-
-function onAbout(req, res) {
-	res.render('about')
-}
-
-function onRegister(req, res) {
-	res.render('register')
-}
-
-/* async wordt gebruikt omdat het een await bevat hierdoor kan het verder met de code*/ 
-async function onPostRegister(req, res) {
-	//res.render('register');
-	try {
-		/* hashed password, password wordt 10 gehashed door await */
-		const hashedPassword = await bcrypt.hash(req.body.password, 10)
-		console.log(hashedPassword)
-		console.log('name = '+ req.body.name,
-			'email = '+ req.body.email,
-			'date = '+ req.body.date,
-			'password '+ hashedPassword,
-			'pokemon of choice '+ req.body.pokemon)
-		await User.create({
-			/* Haalt de gegevens uit het formulier en plaatst deze in de users array (name in het form)*/
-			name: req.body.name,
-			email: req.body.email,
-			date: req.body.date,
-			password: hashedPassword,
-			pokemon: req.body.pokemon
-		})
-		res.redirect('/login')
-       
-	} catch(err) {
-		console.log(err)
-		res.redirect('/register')
-	}
-}
-
-function notFound(req, res) {
-	res.send('<h1>404 page not found</h1>')
-}
 
 /*
 Andere mannier van routes plaatsen
@@ -170,11 +100,6 @@ app.get('/', (req, res) => {
     res.status(200).send('<h1>200! Hello world</h1>');
 });
 */
-
-app.listen(PORT, () => {
-	console.log(`server running on port: ${PORT}`)
-}) 
-
 /* linkjes
 https://handlebarsjs.com/installation/#npm-or-yarn-recommended
 https://expressjs.com/

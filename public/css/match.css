@@ -1,0 +1,62 @@
+.user-card {
+	background-color: white;
+	padding: 1em;
+	box-shadow: 0px 0px 30px rgba(0,0,0,0.3);
+	max-height: 25em;
+	margin-bottom: 1em;
+	border-radius: 8px;
+	flex: 1 1 calc(33% - 2em);
+	transition: all 1s ease;
+	max-width: 100%;
+	min-width: calc(33% - 2em);
+}
+
+.user-card:nth-child(3n+1) {
+	margin-right: 1em;
+}
+
+.user-card:nth-child(3n) {
+	margin-left: 1em;
+}
+
+.user-card form {
+	width: auto;
+	display: block;
+}
+
+.user-card header {
+	width: 100%;
+	padding: 0;
+	display: block;
+	height: 10em;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.user-card img {
+	display: block;
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+
+.user-card form {
+	box-shadow: none;
+	margin: 0;
+	padding: 0;
+}
+
+.user-card footer {
+	background-color: white;
+}
+
+.liked {
+	min-width: 0;
+	max-width: 0;
+	white-space: nowrap;
+	opacity: 0;
+}
+
+.like-remove {
+	display: none;
+}

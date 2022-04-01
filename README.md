@@ -49,5 +49,6 @@ Distributed under the [Mit](/LICENSE). See LICENSE.txt for more information.
 - Connection pokemon api (https://pokeapi.co/).
 
 ### Back-end
-- Register
-- Login
+- Register.
+- Login.
+- Sending email to user when registered.
