@@ -1,0 +1,1 @@
+const addMultipleEventListeners=(e,t,d)=>e.forEach(e=>e.addEventListener(t,d));export default addMultipleEventListeners;
