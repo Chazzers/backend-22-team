@@ -1,9 +1,9 @@
 <section>
 	{{#each users }}
-		<article>
+		<article data-id="{{this.email}}" class="user-card">
 			<p>{{ this.name }}</p>
 			<p>{{ this.pokemon }}</p>
-			<form action="like-pokemon" method="POST">
+			<form action="like-user" method="POST">
 				<button class="like-button" name="newLike" value="{{this.email}}" type="submit">Like</button>
 			</form>
 		</article>

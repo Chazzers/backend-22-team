@@ -16,7 +16,7 @@ registerInput.forEach(item => item.addEventListener('blur', blur))
 let errormessage = 0
 // const submitButton = document.getElementById("submit");
 
-function blur(e) {
+function checkFilled(e) {
 	//console.log(e.currentTarget.value);
 	//whenever there is nothing filled inside a form field
     
@@ -37,3 +37,5 @@ function blur(e) {
 	//     submitButton.style.display = "block";
 	// }
 }
+
+export default checkFilled

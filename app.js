@@ -87,7 +87,7 @@ app.get('*', onNotFound)
 
 app.post('/register', onPostRegister)
 app.post('/login', onPostLogin)
-app.post('/like-pokemon', onPostLike)
+app.post('/like-user', onPostLike)
 
 app.listen(PORT, () => {
 	console.log(`server running on port: http://localhost:${PORT}`)
