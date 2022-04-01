@@ -38,7 +38,7 @@ async function onPostRegister(req, res) {
 		})
 		let url = 'http://localhost:1337/login'
 		if(process.env.PRODUCTION) {
-			url = ''//heroku url
+			url = 'https://pokematch-team.herokuapp.com/login'//heroku url
 		}
 		await transporter.sendMail({
 			from: `"Pokemon Match 🔥" <${process.env.MAIL}>`, // sender address
