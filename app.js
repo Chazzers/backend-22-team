@@ -22,10 +22,12 @@ const onLogin = require('./controllers/render/onLogin.js')
 const onAbout = require('./controllers/render/onAbout.js')
 const onRegister = require('./controllers/render/onRegister.js')
 const onNotFound = require('./controllers/render/onNotFound.js')
+const onMatch = require('./controllers/render/onMatch.js')
 
 // controller post functions
 const onPostLogin = require('./controllers/post/onPostLogin.js')
 const onPostRegister = require('./controllers/post/onPostRegister.js')
+const onPostLike = require('./controllers/post/onPostLike.js')
 
 connectDb(process.env.DATABASE_URI)
 
@@ -80,10 +82,12 @@ app.get('/', onHome)
 app.get('/about', onAbout)
 app.get('/register', onRegister)
 app.get('/login', onLogin)
+app.get('/match', onMatch)
 app.get('*', onNotFound)
 
 app.post('/register', onPostRegister)
 app.post('/login', onPostLogin)
+app.post('/like-pokemon', onPostLike)
 
 app.listen(PORT, () => {
 	console.log(`server running on port: http://localhost:${PORT}`)

@@ -1,0 +1,11 @@
+<section>
+	{{#each users }}
+		<article>
+			<p>{{ this.name }}</p>
+			<p>{{ this.pokemon }}</p>
+			<form action="like-pokemon" method="POST">
+				<button class="like-button" name="newLike" value="{{this.email}}" type="submit">Like</button>
+			</form>
+		</article>
+	{{/each}}
+</section>

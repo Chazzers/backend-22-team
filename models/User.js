@@ -12,7 +12,8 @@ const userSchema = new Schema({
 	email: String,
 	date: Date,
 	password: String,
-	pokemon: String
+	pokemon: String,
+	likedUsers: Array
 })
 const User = mongoose.model('User',userSchema)
 
