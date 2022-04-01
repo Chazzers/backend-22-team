@@ -11,8 +11,8 @@ function buildJs() {
 }
 
 function buildCss() {
-	return gulp.src('./public/style/*.css')
-		.pipe(concat('style.css'))
+	return gulp.src('./public/css/*.css')
+		.pipe(concat('styles.css'))
 		.pipe(cleanCSS())
 		.pipe(gulp.dest('public/dist/css'))
 }
