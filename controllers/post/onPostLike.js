@@ -1,3 +1,4 @@
+// import mongoose User schema
 const User = require('../../models/User.js')
 
 async function onPostLike(req, res) {
@@ -5,7 +6,7 @@ async function onPostLike(req, res) {
 		// properties from logged in user
 		const { email, likedUsers } = req.session.user
 
-		// game-id from submitted form
+		// user-email from submitted form
 		const { newLike } = req.body
 
 		// find logged-in user in database
@@ -13,18 +14,18 @@ async function onPostLike(req, res) {
 			email: email
 		})
 
-		// push new liked game to the likedGames array
+		// push new liked game to the likedUsers array
 		likedUsers.push(newLike)
 		
-		// update the logged-in users likedGames array
+		// update the logged-in users likedUsers array
 		req.session.user.likedUsers = likedUsers
 		
-		// update the logged-in users likedGames array
+		// update the logged-in users likedUsers array
 		await currentUser.updateOne({
 			'likedUsers': likedUsers
 		})
 
-		// redirect back to games page
+		// redirect back to match page
 		res.redirect('/match')
 	} catch(err) {
 		return err

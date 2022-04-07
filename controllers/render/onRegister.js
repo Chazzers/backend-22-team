@@ -11,11 +11,6 @@ async function onRegister(req, res) {
 	const dataCharmander = await responseCharmander.json()
 	const dataSquirtle = await responseSquirtle.json()
 
-	//Kijken of de image meegaat
-	console.log(dataBulbasaur.sprites.front_default)
-	console.log(dataCharmander.sprites.front_default)
-	console.log(dataSquirtle.sprites.front_default)
-
 	res.render('register', {
 		//Verstuur de data naar register form.
 		bulbasaur: dataBulbasaur,
